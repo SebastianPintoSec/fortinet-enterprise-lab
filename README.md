@@ -9,7 +9,7 @@ Laboratorio físico y portafolio técnico orientado a **FortiGate, FortiOS, fire
 
 ## Laboratorios
 ### [LAB 01 — Dual WAN + SD-WAN + Failover](labs/LAB-01-Dual-WAN-SDWAN/README.md)
-Topología: RB4011 (ISP-A/ISP-B simulados) → FortiGate 80F → USW Pro. Ya validados ambos gateways y salida a Internet de ambos enlaces mediante pruebas controladas de enrutamiento. **SD-WAN, failover/failback y tráfico LAN aún no ejecutados.**
+Topología: RB4011 (ISP-A/ISP-B simulados) → FortiGate 80F → USW Pro. Ya validados ambos gateways y salida a Internet de ambos enlaces. **Failover y failback con rutas estáticas verificados desde un PC**, con interrupción de algunos segundos; **SD-WAN y Performance SLA pendientes**.
 
 - [Arquitectura, interfaces y plan IP](labs/LAB-01-Dual-WAN-SDWAN/01-arquitectura.md)
 - [Routing, distancias, prefijos y evidencias de validación](labs/LAB-01-Dual-WAN-SDWAN/02-enrutamiento-y-validaciones.md)
