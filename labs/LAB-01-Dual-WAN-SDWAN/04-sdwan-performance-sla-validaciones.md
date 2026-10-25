@@ -83,3 +83,20 @@ El número de timeouts visibles no es una medida exacta de la duración interna 
 - Si el ping no conmuta, revisar estado health-check, selección de SD-WAN rule y ruta instalada.
 
 > Solo se reportan resultados observados; ninguna evidencia pública contiene números de serie, credenciales ni archivos de respaldo.
+
+
+## Evidencia 05: recuperación del ISP-A tras la falla (2026-10-24)
+
+El operador restauró ISP-A y reportó recuperación automática. En capturas de la GUI se observó:
+
+| Medición | ISP-A / wan1 | ISP-B / wan2 |
+| --- | --- | --- |
+| Indicador de salud | Verde (alive) | Verde (alive) |
+| Pérdida mostrada | 78.00 % | 0.00 % |
+| Latencia | 3.41 ms | 3.87 ms |
+| Jitter | 0.41 ms | 0.56 ms |
+| Tráfico visible | Descarga 28.26 kbps / subida 38.86 kbps | Descarga 67.61 kbps / subida 23.44 kbps |
+
+La pérdida de 78 % sobre WAN1 es compatible con la ventana de medición acumulando fallos anteriores; el estado verde indica que las comprobaciones de salud ya consideraban recuperado el camino. Esta captura **no prueba pérdida actual sostenida del 78 %**, ni que todas las sesiones nuevas regresen a WAN1.
+
+**Conclusión:** el *failback de disponibilidad* y la reaparición de tráfico por WAN1 se observan, y el operador confirma recuperación automática. Queda pendiente validar la elección de WAN1 para sesiones nuevas mediante diagnóstico de SD-WAN y confirmar el tipo exacto de falla simulada (estado físico up/down). El gráfico de tráfico simultáneo en WAN1 y WAN2 tampoco demuestra por sí solo balanceo: pueden existir sesiones anteriores y sondas.
