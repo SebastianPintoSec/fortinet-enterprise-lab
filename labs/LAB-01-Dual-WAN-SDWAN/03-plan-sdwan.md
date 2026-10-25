@@ -1,6 +1,6 @@
 # 03 — Plan de SD-WAN y pruebas de aceptación
 
-**Estado: pendiente de implementación.** Esta página es un plan, no evidencia de failover exitoso.
+**Estado:** diseño implementado parcialmente y primera prueba funcional SD-WAN observada. Consultar [bitácora de implementación y evidencias](04-sdwan-performance-sla-validaciones.md). La validación específica de caída lógica con interfaz física levantada y el failback SD-WAN permanecen pendientes.
 
 ## Propósito
 Las rutas por distancia sirven como respaldo básico cuando una ruta deja de estar disponible. Pero si WAN1 permanece físicamente activa y el camino pierde salida real a Internet, una ruta predeterminada simple puede seguir seleccionándose. SD-WAN más health-check / Performance SLA permite medir salud del camino y aplicar preferencia de enlaces.
