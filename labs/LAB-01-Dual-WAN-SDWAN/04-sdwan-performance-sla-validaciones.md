@@ -118,3 +118,20 @@ Service(1): Address Mode(IPV4) flags=0x200 use-shortcut-sla
 **Interpretación:** la regla IPv4 1 se encuentra en modo manual con dos miembros saludables y seleccionables. La preferencia se aplica según el orden de miembros configurado: wan1 y luego wan2. El indicador `selected` en ambos miembros **no prueba balanceo de carga ni demuestra qué WAN tomó una sesión particular**. Verificación complementaria pendiente: `diagnose firewall proute list` y registro *Forward Traffic* de una sesión nueva para comprobar `dstintf` efectiva. No confundir elegibilidad con ruta usada por un flujo.
 
 Referencia técnica: documentación Fortinet FortiOS 7.0 New Features Guide y Technical Tip «Working of SD-WAN rule with outgoing interface selection strategy as manual».
+
+
+## Evidencia 07: regla instalada en policy routing (2026-10-24)
+
+Comando de solo lectura: `diagnose firewall proute list`.
+
+```text
+id=2131427329(0x7f0b0001) vwl_service=1(SDWAN-PRIMARY-BACKUP)
+vwl_mbr_seq=1 2 ... iif=0(any) ... path(2) oif=5(wan1) oif=6(wan2)
+source(1): 0.0.0.0-255.255.255.255
+destination(1): 0.0.0.0-255.255.255.255
+hit_count=761 last_used=2026-10-24 19:50:48
+```
+
+**Interpretación:** `vwl_service=1` identifica la regla manual configurada; `vwl_mbr_seq=1 2` y `path(2)` exponen ambos caminos en orden de preferencia. `hit_count=761` demuestra coincidencias de la regla, no que 761 paquetes o sesiones hayan utilizado WAN1 específicamente. `last_used` conserva la marca del dispositivo sin inferir duración de sesión o conmutación. Se requiere validar la interfaz de salida `dstintf` de una conexión nueva en *Forward Traffic* (o con diagnóstico de sesión) para confirmar selección efectiva por flujo.
+
+**Estado:** regla activa y utilizada, preferencia configurada; inspección de interfaz real de una sesión individual pendiente.
