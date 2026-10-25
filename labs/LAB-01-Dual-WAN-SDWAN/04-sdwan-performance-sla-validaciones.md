@@ -100,3 +100,21 @@ El operador restauró ISP-A y reportó recuperación automática. En capturas de
 La pérdida de 78 % sobre WAN1 es compatible con la ventana de medición acumulando fallos anteriores; el estado verde indica que las comprobaciones de salud ya consideraban recuperado el camino. Esta captura **no prueba pérdida actual sostenida del 78 %**, ni que todas las sesiones nuevas regresen a WAN1.
 
 **Conclusión:** el *failback de disponibilidad* y la reaparición de tráfico por WAN1 se observan, y el operador confirma recuperación automática. Queda pendiente validar la elección de WAN1 para sesiones nuevas mediante diagnóstico de SD-WAN y confirmar el tipo exacto de falla simulada (estado físico up/down). El gráfico de tráfico simultáneo en WAN1 y WAN2 tampoco demuestra por sí solo balanceo: pueden existir sesiones anteriores y sondas.
+
+
+## Evidencia 06: regla SD-WAN en modo manual tras recuperación
+
+Salida observada:
+```text
+Service(1): Address Mode(IPV4) flags=0x200 use-shortcut-sla
+  Gen(4), TOS(0x0/0x0), Protocol(0: 1->65535), Mode(manual)
+  Members(2):
+    1: Seq_num(1 wan1), alive, selected
+    2: Seq_num(2 wan2), alive, selected
+  Src address(1): 0.0.0.0-255.255.255.255
+  Dst address(1): 0.0.0.0-255.255.255.255
+```
+
+**Interpretación:** la regla IPv4 1 se encuentra en modo manual con dos miembros saludables y seleccionables. La preferencia se aplica según el orden de miembros configurado: wan1 y luego wan2. El indicador `selected` en ambos miembros **no prueba balanceo de carga ni demuestra qué WAN tomó una sesión particular**. Verificación complementaria pendiente: `diagnose firewall proute list` y registro *Forward Traffic* de una sesión nueva para comprobar `dstintf` efectiva. No confundir elegibilidad con ruta usada por un flujo.
+
+Referencia técnica: documentación Fortinet FortiOS 7.0 New Features Guide y Technical Tip «Working of SD-WAN rule with outgoing interface selection strategy as manual».
