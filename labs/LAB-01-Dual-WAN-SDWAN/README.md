@@ -38,7 +38,8 @@ Ambas WAN simuladas dependen del mismo upstream doméstico: **no representan red
 | Internet por WAN2 | 5/5 a 9.9.9.9 con ruta temporal /32 |
 | Failover estático WAN1→WAN2 y failback WAN2→WAN1 | **Validado desde PC, interrupción de pocos segundos** |
 | Zona, miembros, regla SD-WAN y Performance SLA | **Configurados y health-check alive/alive validado** |
-| Failover basado en SD-WAN | **Pendiente** |
+| Failover SD-WAN a WAN2 | **Validado mediante ping continuo y health-check** |
+| Recuperación WAN1 tras falla | **Alive y tráfico en WAN1 observados; falta verificación de nuevas sesiones** |
 | PC conectado a internal con acceso a Internet | **Validado** |
 
 ## Documentos
