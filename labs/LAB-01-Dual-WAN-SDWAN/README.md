@@ -37,7 +37,7 @@ Ambas WAN simuladas dependen del mismo upstream doméstico: **no representan red
 | Internet por WAN1 | 5/5 a 1.1.1.1, forzando WAN1 |
 | Internet por WAN2 | 5/5 a 9.9.9.9 con ruta temporal /32 |
 | Failover estático WAN1→WAN2 y failback WAN2→WAN1 | **Validado desde PC, interrupción de pocos segundos** |
-| SD-WAN y Performance SLA | **Pendientes** |
+| Zona, miembros, regla SD-WAN y Performance SLA | **Configurados y health-check alive/alive validado** |
 | Failover basado en SD-WAN | **Pendiente** |
 | PC conectado a internal con acceso a Internet | **Validado** |
 
@@ -47,3 +47,5 @@ Ambas WAN simuladas dependen del mismo upstream doméstico: **no representan red
 - [Plan de SD-WAN y criterios de aceptación](03-plan-sdwan.md)
 
 > Seguridad de publicación: no se incluyen credenciales, números de serie, IP públicas operativas ni respaldos completos. La documentación registra únicamente datos necesarios para reproducir el laboratorio.
+
+- [SD-WAN y resultados de failover](04-sdwan-performance-sla-validaciones.md)
