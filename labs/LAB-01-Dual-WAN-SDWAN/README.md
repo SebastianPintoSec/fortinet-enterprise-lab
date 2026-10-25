@@ -36,8 +36,10 @@ Ambas WAN simuladas dependen del mismo upstream doméstico: **no representan red
 | Ruta secundaria WAN2 (distancia 20) | Configurada; no activa mientras WAN1 se prefiera |
 | Internet por WAN1 | 5/5 a 1.1.1.1, forzando WAN1 |
 | Internet por WAN2 | 5/5 a 9.9.9.9 con ruta temporal /32 |
+| Failover estático WAN1→WAN2 y failback WAN2→WAN1 | **Validado desde PC, interrupción de pocos segundos** |
 | SD-WAN y Performance SLA | **Pendientes** |
-| Failover/failback automático y tráfico LAN | **Pendientes de validación** |
+| Failover basado en SD-WAN | **Pendiente** |
+| PC conectado a internal con acceso a Internet | **Validado** |
 
 ## Documentos
 - [Arquitectura y direccionamiento](01-arquitectura.md)
