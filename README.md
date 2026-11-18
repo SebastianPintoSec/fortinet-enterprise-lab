@@ -8,6 +8,7 @@ Laboratorio físico y portafolio técnico orientado a **FortiGate, FortiOS, fire
 - **Ubiquiti USW Pro** — capa de acceso downstream.
 - **UniFi CloudKey Plus** — gestión local UniFi.
 - **UniFi AP** — WLAN segmentada por VLAN.
+- **Raspberry Pi** — host de infraestructura y servicios del laboratorio.
 
 ## Laboratorios
 
@@ -30,7 +31,17 @@ Validado:
 - DHCP e Internet para clientes WiFi;
 - troubleshooting de DHCP y tagging UniFi/FortiGate.
 
-**Próxima fase:** evaluar adopción remota Layer 3 para clientes detrás de ONT/CGNAT mediante UniFi OS Server en VPS u Official UniFi Hosting.
+### [LAB 03 — Segmentación Inter-VLAN y mínimo privilegio](labs/LAB-03-InterVLAN-Segmentation/README.md)
+Validación de acceso controlado entre VLANs mediante políticas FortiGate.
+
+Escenario probado:
+- VLAN30-WIFI puede alcanzar únicamente la Raspberry Pi en VLAN100-MGMT;
+- servicios permitidos: PING, SSH y HTTPS;
+- NAT deshabilitado para preservar la IP de origen;
+- VLAN20-USUARIOS permanece sin acceso a la Raspberry;
+- logging de sesiones validado en **Forward Traffic**.
+
+**Próximas fases:** servicios de infraestructura en Raspberry Pi, Syslog centralizado, monitoreo, FreeRADIUS/802.1X y evaluación de adopción remota UniFi para clientes detrás de CGNAT.
 
 ## Metodología
 Cada fase documenta: **objetivo, fundamentos, arquitectura, sintaxis de comandos, efectos esperados, riesgos, validaciones, troubleshooting y resultados reales**. Se distinguen explícitamente las pruebas completadas de las pendientes.
@@ -38,4 +49,4 @@ Cada fase documenta: **objetivo, fundamentos, arquitectura, sintaxis de comandos
 ## Publicación segura
 No se incluyen contraseñas, tokens, respaldos completos, números de serie ni direcciones de infraestructura real de terceros. Los prefijos TEST-NET empleados en el LAB 01 son direcciones reservadas para documentación. Antes de publicar evidencias se deben sanitizar.
 
-**Estado general:** work in progress · 2026-11-05.
+**Estado general:** work in progress · 2026-11-18.
